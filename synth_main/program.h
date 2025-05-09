@@ -1,15 +1,18 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
+#include <U8g2lib.h>
+
 class Program {
 public:
-    virtual ~Program() {}
+
+    Program(){}
+    ~Program() {}
 
     virtual void onEncoderLeft() = 0;
     virtual void onEncoderRight() = 0;
     virtual void onClick() = 0;
-    virtual void onLongClick() = 0;
-    virtual void onBack() = 0;
+    virtual void load() = 0;
 
 };
 

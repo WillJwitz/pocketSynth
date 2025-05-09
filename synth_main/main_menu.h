@@ -1,31 +1,30 @@
-#include "program.h"
-
 #ifndef MAIN_MENU_H
 #define MAIN_MENU_H
 
-class Menu() : public Program{
+#include "program.h"
+#include <U8g2lib.h>
+
+
+class Menu : public Program{
 public:
-  Menu();
+   Menu(U8G2* disp, unsigned short s);
 
   ~Menu();  
 
-  void onEncoderLeft() override;
-  void onEncoderRight() override;
-  void onClick() override;
-  void onLongClick() override;
-  void onBack() override;
+  void onEncoderLeft() override; // input
+  void onEncoderRight() override; // input
+  void onClick() override; // input
+  void load() override; // startup to load visuals and other tasks when program is changed to active
+  void setItem(const char* nm, Program* prog, unsigned short index); // Set parallel list items, this header impl. prevents any misalignment of the arrays
+  void refreshDisplay();
+
 
 private:
-
-  const char* items[] = {
-    "Waveform Select",
-    "Sequencer"
-    "BPM"
-    "Play"
-  }
-
-  int selector = 0;
-  int items_len = 4;
-}
+  U8G2* displayObj = nullptr;
+  const char** itemList;
+  Program** execList;
+  unsigned short len;
+  short index = 0;
+};
 
 #endif
