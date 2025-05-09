@@ -3,6 +3,8 @@
 
 #include "program.h"
 #include "main_menu.h"
+#include "audio_patch.h"
+#include "synth.h"
 
 int led = 13;
 
@@ -31,6 +33,7 @@ Program* activeProg = nullptr;
 
 //--- Menu ---
 Menu mainMenu(&u8g2, 4);
+Synth synthMenu(&u8g2);
 
 
 // --- Setup ---
@@ -42,7 +45,7 @@ void setup() {
 
   // main menu startup
  
-  mainMenu.setItem("Synth", nullptr, 0);
+  mainMenu.setItem("Synth", , 0);
   mainMenu.setItem("Play", nullptr, 1);
   mainMenu.setItem("Sequence", nullptr, 2);
   mainMenu.setItem("Info", nullptr, 3);
